@@ -16,6 +16,9 @@ func logInfo()  {
 		if createInterval > 0 {
 			timeout = time.After(createInterval * time.Minute)
 		}
+		if onlyInfo && maxFile > 0 {
+			go removeOldestFile()
+		}
 		loop:
 		for {
 			select {

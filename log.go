@@ -17,12 +17,12 @@ var maxFile int
 //onlyInfo：如果为true，则只创建INFO文件
 //以下配置仅在onlyInfo为true时生效
 //maxFile：log文件夹中可以保留的最大文件个数，当文件个数到达maxFile时，清除最早创建的文件，如果设为0，则没有限制
-func Init(createinterval time.Duration, onlyinfo bool) {
+func Init(createinterval time.Duration, onlyinfo bool, maxfile int) {
 	createInterval = createinterval
 	onlyInfo = onlyinfo
-	//if onlyInfo {
-	//	maxFile = maxfile
-	//}
+	if onlyInfo {
+		maxFile = maxfile
+	}
 	//创建日志文件夹
 	os.Mkdir("./log",0777)
 	//创建队列
