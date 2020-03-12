@@ -37,5 +37,9 @@ func LogWarn(format string, args... interface{})  {
 	pc, callFile, line, _ := runtime.Caller(1)
 	function := runtime.FuncForPC(pc).Name()
 	buf = fmt.Sprintf("WARN %s %s %d %s", callFile, function, line, buf)
-	warnQueue <- buf
+	if onlyInfo {
+		infoQueue <- buf
+	} else {
+		warnQueue <- buf
+	}
 }

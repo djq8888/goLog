@@ -37,5 +37,9 @@ func LogError(format string, args... interface{})  {
 	pc, callFile, line, _ := runtime.Caller(1)
 	function := runtime.FuncForPC(pc).Name()
 	buf = fmt.Sprintf("ERROR %s %s %d %s", callFile, function, line, buf)
-	errorQueue <- buf
+	if onlyInfo {
+		infoQueue <- buf
+	} else {
+		errorQueue <- buf
+	}
 }
