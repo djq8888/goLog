@@ -6,12 +6,14 @@ import (
 	"time"
 )
 
-var infoLog, warnLog, errorLog *secureFile
-var infoQueue, warnQueue, errorQueue chan string
-var wg sync.WaitGroup
-var createInterval time.Duration
-var onlyInfo bool
-var maxFile, maxLine int
+var (
+	infoLog, warnLog, errorLog *secureFile
+	infoQueue, warnQueue, errorQueue chan string
+	wg sync.WaitGroup
+	createInterval time.Duration
+	onlyInfo bool
+	maxFile, maxLine int
+)
 
 //createinterval：切分日志文件的时间间隔（分钟），如果设为0，则会将运行期间所有日志写入同一文件
 //onlyinfo：如果为true，则只创建INFO文件
